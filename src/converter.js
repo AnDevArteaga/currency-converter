@@ -32,6 +32,7 @@ export class CurrencyConverter {
         if (!this.base || this.targets.length === 0) {
             throw new Error("Debes establecer monedas");
         }
+        if (this.amount <= 0) throw new Error("Debes establecer una cantidad mayor que 0.");
         const baseRate = this.rates[this.base];
         const results = {};
 
