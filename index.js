@@ -27,7 +27,7 @@ async function main() {
         supportedCurrencies = Object.keys(rates);
         menu();
     } catch (err) {
-        console.error("Error al obtener tasas:", err);
+        console.error("Error al obtener tasas, vuelva a ejecutar la aplicación y si persiste, revise su conexión a internet");
         rl.close();
     }
 }
