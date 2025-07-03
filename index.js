@@ -98,7 +98,7 @@ async function menu() {
                 console.log("\n=== Resultado ===");
                 console.log(`Cantidad: ${converter.amount} ${converter.base}`);
                 for (const [target, value] of Object.entries(result)) {
-                    console.log(`${target}: ${value}`);
+                    console.log(`${target}: ${value.toFixed(2)}`);
                 }
                 history.add({
                     base: converter.base,
