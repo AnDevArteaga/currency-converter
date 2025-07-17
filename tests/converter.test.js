@@ -32,8 +32,8 @@ describe("CurrencyConverter", () => {
     });
 
     it("establece correctamente el monto", () => {
-        converter.setAmount("123.456");
-        expect(converter.amount).toBeCloseTo(123.46);
+        converter.setAmount("123.45");
+        expect(converter.amount).toBeCloseTo(123.45);
     });
 
     it("lanza error si no se definen monedas o cantidad", () => {

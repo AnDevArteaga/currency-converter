@@ -9,31 +9,40 @@ Aplicación de consola escrita en JavaScript que permite convertir montos entre 
 ```
 currency-converter/
 ├── src/
-│   ├── api.js             # Conexión con la API de divisas
-│   ├── converter.js       # Lógica de conversión
-│   ├── history.js         # Registro del historial de conversiones
+│   ├── handlers/
+│   │   └── MenuAction.js     # Acciones del menú principal
+│   ├── utils/
+│   │   └── utils.js          # Funciones utilitarias
+│   ├── api.js                # Conexión con la API de divisas
+│   ├── config.js             # Constantes y configuraciones
+│   ├── converter.js          # Lógica de conversión
+│   ├── history.js            # Registro del historial de conversiones
+│   └── validator.js          # Validaciones de campos
 ├── tests/
-│   ├── api.test.js        # Pruebas unitarias para el módulo API
-│   ├── converter.test.js  # Pruebas unitarias para el conversor
-│   ├── history.test.js    # Pruebas para el historial
-├── index.js               # Entrada principal y menú interactivo
-├── package.json           # Configuración del proyecto
-├── .eslintrc.json         # Configuración de ESLint
-└── README.md              # Este archivo
+│   ├── api.test.js           # Pruebas unitarias para el módulo API
+│   ├── converter.test.js     # Pruebas unitarias para el conversor
+│   └── history.test.js       # Pruebas para el historial
+├── .env.example              # Ejemplo de variables de entorno
+├── .eslintrc.json           # Configuración de ESLint
+├── .gitignore               # Archivos ignorados por Git
+├── index.js                 # Entrada principal y menú interactivo
+├── package.json             # Configuración del proyecto
+└── README.md                # Este archivo
 ```
 
 ---
 
 ## 📌 Funcionalidades
 
-- Obtener tasas de cambio desde una API externa al iniciar
-- Convertir entre monedas con precisión decimal (centavos)
-- Soporte para múltiples monedas destino
-- Validación de entradas del usuario
-- Historial de conversiones por sesión
-- Menú interactivo en consola con opciones
-- Pruebas automatizadas con Vitest
-- Linter con ESLint y reglas básicas
+- ✅ Obtener tasas de cambio desde una API externa al iniciar
+- ✅ Convertir entre monedas con precisión decimal (centavos)
+- ✅ Soporte para múltiples monedas destino
+- ✅ Validación robusta de entradas del usuario
+- ✅ Historial de conversiones por sesión
+- ✅ Menú interactivo en consola con opciones
+- ✅ Pruebas automatizadas con Vitest
+- ✅ Linter con ESLint y reglas básicas
+- ✅ Configuración segura con variables de entorno
 
 ---
 
@@ -41,25 +50,42 @@ currency-converter/
 
 - Node.js >= 18
 - Conexión a Internet
+- API Key de [freecurrencyapi.com](https://freecurrencyapi.com/)
 
 ---
 
-## 🛠 Instalación y ejecución
+## 🛠 Instalación y Configuración
 
-1. **Clona el repositorio**
+### 1. Clona el repositorio
 
 ```bash
 git clone https://github.com/tuusuario/currency-converter.git
 cd currency-converter
 ```
 
-2. **Instala dependencias**
+### 2. Instala las dependencias
 
 ```bash
 npm install
 ```
 
-3. **Ejecuta la aplicación**
+### 3. Configura las variables de entorno
+
+1. Dirígete a [freecurrencyapi.com](https://freecurrencyapi.com/) y crea una cuenta
+2. Obtén tu API Key gratuita
+3. Copia el archivo de ejemplo y renombralo correctamente:
+
+```bash
+cp .env.example .env
+```
+
+4. Edita el archivo `.env` y agrega tu API Key:
+
+```env
+API_KEY=tu_api_key_aqui
+```
+
+### 4. Ejecuta la aplicación
 
 ```bash
 npm start
@@ -67,17 +93,17 @@ npm start
 
 ---
 
-## ▶️ Flujo de uso de la consola
+## ▶️ Flujo de Uso de la Consola
 
-Al ejecutar `npm start`, se abrirá un menú con las siguientes opciones:
+Al ejecutar `npm start`, se abrirá un menú interactivo con las siguientes opciones:
 
-1. Mostrar monedas disponibles
-2. Mostrar tasas de cambio
-3. Establecer moneda base y monedas destino
-4. Establecer cantidad a convertir
-5. Convertir y mostrar resultados
-6. Ver historial de conversiones
-7. Salir
+1. **Mostrar monedas disponibles** - Lista todas las monedas soportadas
+2. **Mostrar tasas de cambio** - Muestra las tasas actuales desde la API
+3. **Establecer moneda base y monedas destino** - Configura las monedas para conversión
+4. **Establecer cantidad a convertir** - Define el monto a convertir
+5. **Convertir y mostrar resultados** - Ejecuta la conversión y muestra resultados
+6. **Ver historial de conversiones** - Revisa todas las conversiones realizadas
+7. **Salir** - Termina la aplicación
 
 La aplicación seguirá funcionando hasta que elijas salir.
 
@@ -85,7 +111,7 @@ La aplicación seguirá funcionando hasta que elijas salir.
 
 ## 🧪 Pruebas Automatizadas
 
-Este proyecto usa **Vitest** para las pruebas.
+Este proyecto usa **Vitest** para las pruebas unitarias.
 
 ### Ejecutar todos los tests:
 
@@ -95,23 +121,21 @@ npm test
 
 ### Resultado esperado:
 
-Todos los tests deben pasar sin errores. Salida esperada:
-
 ```
 ✓ converter.test.js (8)
 ✓ api.test.js (2)
 ✓ history.test.js (3)
 
 Test Files  3 passed (3)
-      Tests  13 passed (13)
-   Start Time ...
-``` 
+Tests  13 passed (13)
+Start Time ...
+```
 
 ---
 
-## 🧹 Estilo de Código (Lint)
+## 🧹 Calidad de Código (Lint)
 
-Usamos ESLint con reglas básicas (`semi`, `quotes`, `no-unused-vars`).
+Usamos ESLint con reglas básicas para mantener consistencia en el código.
 
 ### Ejecutar lint:
 
@@ -129,11 +153,43 @@ Si no hay errores, la salida será vacía:
 
 ---
 
+## 🏗️ Arquitectura del Proyecto
+
+### Separación de Responsabilidades
+
+- **`handlers/MenuAction.js`**: Contiene todas las acciones del menú principal, separando la lógica de interacción
+- **`utils/utils.js`**: Funciones utilitarias reutilizables en toda la aplicación
+- **`config.js`**: Centralizadas todas las constantes y configuraciones
+- **`validator.js`**: Validaciones específicas para todos los campos de entrada
+- **`api.js`**: Manejo exclusivo de la conexión con la API externa
+- **`converter.js`**: Lógica pura de conversión de monedas
+- **`history.js`**: Gestión del historial de conversiones
+
+---
+
 ## 🔐 Consideraciones Técnicas
 
-- **Precisión Decimal:** se usa `toFixed` y validación con `Number` para mantener precisión hasta centavos.
-- **Key API expuesta:** por facilidad de revisión técnica, la clave de la API está escrita directamente en el código. Esta **no expone información personal**, solo permite hacer peticiones públicas de tasas de cambio. Será eliminada del código final y retirada del commit una vez revisada.
-- **Axios:** se usa `axios` para las llamadas a la API, con manejo de errores básico.
-- **Historial:** las conversiones realizadas se guardan en memoria durante la sesión.
-- **Mocking:** las llamadas externas están simuladas en los tests con `vi.mock()` de Vitest.
+### Seguridad
 
+- **Variables de entorno**: La API Key se maneja de forma segura mediante variables de entorno
+- **Validaciones**: Todas las entradas del usuario son validadas antes de procesarse
+
+### Precisión y Rendimiento
+
+- **Precisión decimal**: Se usa `toFixed` y validación con `Number` para mantener precisión hasta centavos
+- **Manejo de errores**: Implementación robusta con `try/catch` y mensajes informativos
+
+### Tecnologías Utilizadas
+
+- **Axios**: Para las llamadas HTTP a la API externa
+- **Vitest**: Framework de testing con mocking avanzado
+- **ESLint**: Análisis estático de código
+- **Dotenv**: Gestión de variables de entorno
+
+### Testing
+
+- **Mocking**: Las llamadas externas están simuladas con `vi.mock()` de Vitest
+- **Cobertura**: Tests unitarios para todos los módulos críticos
+- **Historial**: Las conversiones se guardan en memoria durante la sesión
+
+---

@@ -3,6 +3,8 @@ import axios from "axios";
 import { CurrencyAPI } from "../src/api.js";
 
 vi.mock("axios");
+process.env.API_KEY = "TEST_API_KEY";
+
 
 describe("CurrencyAPI", () => {
     let api;
@@ -32,7 +34,7 @@ describe("CurrencyAPI", () => {
     it("lanza error si no hay respuesta válida", async () => {
         axios.get.mockResolvedValueOnce({});
         await expect(api.fetchRates()).rejects.toThrow(
-            "No se pudo obtener las tasas de cambio",
+            "Respuesta vacía del servidor."
         );
     });
 });
