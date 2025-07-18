@@ -76,7 +76,7 @@ npm install
 3. Copia el archivo de ejemplo y renombralo correctamente:
 
 ```bash
-cp .env.example .env
+.env.example --> .env
 ```
 
 4. Edita el archivo `.env` y agrega tu API Key:
