@@ -59,7 +59,7 @@ currency-converter/
 ### 1. Clona el repositorio
 
 ```bash
-git clone https://github.com/tuusuario/currency-converter.git
+git clone https://github.com/AnDevArteaga/currency-converter.git
 cd currency-converter
 ```
 
