@@ -51,7 +51,7 @@ currency-converter/
 - Node.js >= 18
 - Conexión a Internet
 - API Key de [freecurrencyapi.com](https://freecurrencyapi.com/)
-- Verificar la instalación del paquete dotenv, sino hacer `bash npm i dotenv`
+- Verificar la instalación del paquete dotenv, sino hacer `npm i dotenv`
 
 ---
 
