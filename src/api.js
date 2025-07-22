@@ -1,22 +1,33 @@
+//api 
 import axios from "axios";
+import { URLBuilder } from "./utils/urlBuilder.js";
+
 import { API_BASE_URL, ERROR_MESSAGES } from "./config.js";
 
 export class CurrencyAPI {
     constructor() {
         this.API_KEY = process.env.API_KEY;
-        this.BASE_URL = `${API_BASE_URL}/v1/latest?apikey=${this.API_KEY}`;
         this.rates = {};
+    }
+
+       buildApiUrl() {
+        return URLBuilder
+            .create(API_BASE_URL)
+            .setPath("/v1/latest")
+            .addParam("apikey", this.API_KEY)
+            .build();
     }
 
     //Obtiene las tasas de cambio desde la API
     async fetchRates() {
         try {
-            // Verificar que el API key esté configurado
             if (!this.API_KEY) {
                 throw new Error("API_KEY no configurado. Verifica tus variables de entorno.");
             }
 
-            const res = await axios.get(this.BASE_URL, {
+            const url = this.buildApiUrl();
+            
+            const res = await axios.get(url, {
                 timeout: 10000,
                 headers: {
                     "User-Agent": "Currency-Converter-App/1.0"
